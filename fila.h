@@ -15,6 +15,7 @@ class Fila {
         // bool PersonPresent(const Persona& dato);
         int PersonPresent(const Persona& dato);
         Fila Split(const Persona& dato);
+        Persona pop(void);
 
     private:
         std::shared_ptr<Elemento> _ultimo = nullptr;
