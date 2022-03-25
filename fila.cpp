@@ -1,17 +1,15 @@
 #include "fila.h"
 
-int Fila::size() const{
-    int cont=0;
-    std::shared_ptr<Elemento> aux=_ultimo;
+int Fila::size() const {
+    int cont = 0;
+    std::shared_ptr<Elemento> aux = _ultimo;
 
-    if(aux!=nullptr)
-    {//Ojo con indireccionar el nullptr... segmentation fault...
-        cont++; //Contamos el primer elemento de la lista simplemente enlazada
+    if(aux != nullptr) {
+        cont++;
 
-        while(aux->next!=nullptr)
-        {
-            cont++; //Contamos uno
-            aux=aux->next; //avanzamos en la fila
+        while(aux->next != nullptr) {
+            cont++;
+            aux = aux->next;
         }
 
     }
@@ -19,14 +17,12 @@ int Fila::size() const{
     return cont;
 }
 
-bool Fila::empty() const{
-    if (this->size()==0)
-    {//Dede un método podemos usar otros métodos
+bool Fila::empty() const {
+    if (this->size() == 0) {
         return true;
     }
 
-    //Otra manera menos costosa computacionalmente
-    /*if(_ultimo==nullptr)
+    /*if(_ultimo == nullptr)
     {
         return true;
     }*/
@@ -34,60 +30,66 @@ bool Fila::empty() const{
     return false;
 }
 
-Persona Fila::getBack()const{ //Devolvemos la última persona de la fila
+Persona Fila::getBack() const {
     return _ultimo->dato;
 }
 
-Persona Fila::getFront() const{ //Recorremos la fila buscando el primero
-    std::shared_ptr<Elemento> aux=_ultimo;
-    if(_ultimo!=nullptr)
-    {
-        while(aux->next!=nullptr)
-        {
-            aux=aux->next; //avanzamos en la fila
+Persona Fila::getFront() const {
+    std::shared_ptr<Elemento> aux = _ultimo;
+    if(_ultimo != nullptr) {
+        while (aux->next != nullptr) {
+            aux = aux->next;
         }
 
         return aux->dato;
-    }
-    else
-    {
+    } else {
         throw std::string{"Fila vacia"};
     }
 }
 
-void Fila::push(const Persona& dato){ //Llega la persona dato a la fila
-    if(_ultimo==nullptr)
-    {//No hay nadie en la fila, dato es la primera persona en llegar
-        _ultimo=std::make_shared<Elemento>(dato);
-    }
-    else
-    {//Hay mas gente en la fila=> Ponemos dato en último lugar
-        std::shared_ptr<Elemento> aux=std::make_shared<Elemento>(dato);
-        //"Pedimos vez"
-        aux->next=_ultimo; //El que esté delante de la nueva persona será el último de la fila
-        //Actualizamos nuestro TAD
-        _ultimo=aux; //Actualizamos el puntero a último. Ahora la persona agregada a la lista será la última
+void Fila::push(const Persona& dato) {
+    if(_ultimo == nullptr) {
+        _ultimo = std::make_shared<Elemento>(dato);
+    } else {
+        std::shared_ptr<Elemento> aux = std::make_shared<Elemento>(dato);
+        aux->next = _ultimo;
+        _ultimo = aux;
     }
 }
 
-bool Fila::PersonPresent(const Persona &dato){ //Buscamos a la persona dato en la fila
-    std::shared_ptr<Elemento> aux=_ultimo;
+bool Fila::PersonPresent(const Persona &dato) {
+    std::shared_ptr<Elemento> aux = _ultimo;
 
-    if(_ultimo!=nullptr)
-    {
-        while(aux->next!=nullptr)
-        {
-            if(aux->dato==dato) //Atención para poder comparar personas con operador igualdad == debemos indicar como operar mediante sobercarga
-            {//Si encontramos a la persona que buscamos devolvemos un true
+    if(_ultimo != nullptr) {
+        while(aux->next != nullptr) {
+            if(aux->dato == dato) {
                 return true;
             }
-            aux=aux->next; //avanzamos en la fila
+            aux = aux->next;
         }
 
-        return false; //No hemos encontrado la persona que buscamos
-    }
-    else
-    {
+        return false;
+    } else {
         throw std::string{"Fila vacia"};
     }
+}
+
+Fila Fila::Split(const Persona& dato) {
+    std::shared_ptr<Elemento> elemAux;
+    Fila filaAux;
+
+    if (_ultimo != nullptr) {
+        if (not (elemAux->next->dato == dato)) {
+            do {
+                elemAux = elemAux->next;
+            } while (not (elemAux->next->dato == dato));
+        }
+
+        elemAux->next = nullptr;
+        filaAux._ultimo = std::make_shared<Elemento>(dato);
+    } else {
+        throw std::string{"Fila vacia"};
+    }
+
+    return filaAux;
 }
