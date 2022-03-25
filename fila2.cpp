@@ -29,15 +29,14 @@ Persona Fila2::getBack() const {
     return _ultimo->dato;
 }
 
-Persona Fila2::getFront() const {
-    std::shared_ptr<Elemento2> aux = _ultimo;
-    if(_ultimo != nullptr) {
-        while (aux->next != nullptr) {
-            aux = aux->next;
-        }
-
+Persona Fila2::getFront() const{ //Recorremos la Fila2 buscando el primero
+    std::shared_ptr<Elemento2> aux=_primero;
+    if(_ultimo!=nullptr)
+    {
         return aux->dato;
-    } else {
+    }
+    else
+    {
         throw std::string{"Fila2 vacia"};
     }
 }
@@ -112,3 +111,19 @@ Fila2 Fila2::Split(const Persona& dato) {
 
     return filaAux;
 }
+
+Persona Fila2::pop(void)
+{
+    std::shared_ptr<Elemento2> aux=_primero->prev;
+    Persona auxFront = getFront();
+    if(_ultimo!=nullptr)
+    {
+        aux->next=nullptr;
+        return auxFront;
+    }
+    else
+    {
+        throw std::string{"Fila vacia"};
+    }
+}
+
