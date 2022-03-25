@@ -29,7 +29,7 @@ Persona Fila2::getBack() const {
     if (not (this->empty())) {
         return _ultimo->dato;
     } else {
-        throw std::string{"Fila2 vacia"};
+        throw std::string{"Fila vacia"};
     }
 }
 
@@ -37,16 +37,18 @@ Persona Fila2::getFront() const{ //Recorremos la Fila2 buscando el primero
     if (not (this->empty())) {
         return _primero->dato;
     } else {
-        throw std::string{"Fila2 vacia"};
+        throw std::string{"Fila vacia"};
     }
 }
 
 void Fila2::push(const Persona& dato) {
+    std::shared_ptr<Elemento2> aux = std::make_shared<Elemento2>(dato);
+
     if(this->empty()) {
-        _primero = std::make_shared<Elemento2>(dato);
-        _ultimo = std::make_shared<Elemento2>(dato);
+        _primero = aux;
+        _ultimo = aux;
     } else {
-        std::shared_ptr<Elemento2> aux = std::make_shared<Elemento2>(dato);
+        _ultimo->prev = aux;
         aux->next = _ultimo;
         _ultimo = aux;
     }

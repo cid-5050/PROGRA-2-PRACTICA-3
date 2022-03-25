@@ -1,6 +1,7 @@
 #include <iostream>
 #include "tipos.h"
 #include "fila.h"
+#include "fila2.h"
 
 int main() {
     Persona p {"Julia Perez", 31},
@@ -102,6 +103,24 @@ int main() {
     std::cout << "Gente en la fila original... " << panaderia;
     std::cout << std::endl;
     std::cout << "Gente en la nueva fila... " << fila2;
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    Fila2 panaderia2;
+    panaderia2.push(p);
+    panaderia2.push(p1);
+    panaderia2.push(p2);
+    panaderia2.push(p3);
+
+    std::cout << "Gente en la fila del pan 2... " << panaderia2;
+
+    panaderia2.pop();
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "Gente en la fila del pan 2... " << panaderia2;
 
     std::cout << std::endl;
     std::cout << std::endl;
