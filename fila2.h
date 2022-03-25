@@ -17,7 +17,9 @@ class Fila2 {
         Fila2 Split(const Persona& dato);
 
     private:
+        std::shared_ptr<Elemento2> _primero = nullptr;
         std::shared_ptr<Elemento2> _ultimo = nullptr;
+
         friend std::ostream& operator<<(std::ostream& os, const Fila2& f){
             std::shared_ptr<Elemento2> aux = f._ultimo;
             if (aux != nullptr) {

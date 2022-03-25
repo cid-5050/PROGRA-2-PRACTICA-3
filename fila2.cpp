@@ -43,7 +43,8 @@ Persona Fila2::getFront() const {
 }
 
 void Fila2::push(const Persona& dato) {
-    if(_ultimo == nullptr) {
+    if(this->empty()) {
+        _primero = std::make_shared<Elemento2>(dato);
         _ultimo = std::make_shared<Elemento2>(dato);
     } else {
         std::shared_ptr<Elemento2> aux = std::make_shared<Elemento2>(dato);
