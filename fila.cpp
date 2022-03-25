@@ -93,3 +93,21 @@ Fila Fila::Split(const Persona& dato) {
 
     return filaAux;
 }
+
+Persona Fila::pop(void)
+{
+    std::shared_ptr<Elemento> aux=_ultimo;
+    Persona auxFront = getFront();
+    if(_ultimo!=nullptr)
+    {
+        while(!(aux->next->dato==getFront())){
+            aux=aux->next;
+        }
+        aux->next=nullptr;
+        return auxFront;
+    }
+    else
+    {
+        throw std::string{"Fila vacia"};
+    }
+}
