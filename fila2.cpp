@@ -2,7 +2,7 @@
 
 int Fila2::size() const {
     int cont = 0;
-    std::shared_ptr<Elemento> aux = _ultimo;
+    std::shared_ptr<Elemento2> aux = _ultimo;
 
     if(aux != nullptr) {
         cont++;
@@ -22,11 +22,6 @@ bool Fila2::empty() const {
         return true;
     }
 
-    /*if(_ultimo == nullptr)
-    {
-        return true;
-    }*/
-
     return false;
 }
 
@@ -35,7 +30,7 @@ Persona Fila2::getBack() const {
 }
 
 Persona Fila2::getFront() const {
-    std::shared_ptr<Elemento> aux = _ultimo;
+    std::shared_ptr<Elemento2> aux = _ultimo;
     if(_ultimo != nullptr) {
         while (aux->next != nullptr) {
             aux = aux->next;
@@ -49,16 +44,17 @@ Persona Fila2::getFront() const {
 
 void Fila2::push(const Persona& dato) {
     if(_ultimo == nullptr) {
-        _ultimo = std::make_shared<Elemento>(dato);
+        _ultimo = std::make_shared<Elemento2>(dato);
     } else {
-        std::shared_ptr<Elemento> aux = std::make_shared<Elemento>(dato);
+        std::shared_ptr<Elemento2> aux = std::make_shared<Elemento2>(dato);
         aux->next = _ultimo;
         _ultimo = aux;
     }
 }
 
+/*
 bool Fila2::PersonPresent(const Persona &dato) {
-    std::shared_ptr<Elemento> aux = _ultimo;
+    std::shared_ptr<Elemento2> aux = _ultimo;
 
     if(_ultimo != nullptr) {
         while(aux->next != nullptr) {
@@ -70,12 +66,34 @@ bool Fila2::PersonPresent(const Persona &dato) {
 
         return false;
     } else {
-        throw std::string{"Fila2 vacia"};
+        throw std::string{"Fila vacia"};
+    }
+}
+*/
+
+int Fila2::PersonPresent(const Persona &dato) {
+    int cont = 0;
+    std::shared_ptr<Elemento2> aux = _ultimo;
+
+    if(_ultimo != nullptr) {
+
+        while(aux != nullptr) {
+            if(aux->dato == dato) {
+                return (this->size() - cont);
+            }
+
+            aux = aux->next;
+            cont++;
+        }
+
+        return -1;
+    } else {
+        throw std::string{"Fila vacia"};
     }
 }
 
 Fila2 Fila2::Split(const Persona& dato) {
-    std::shared_ptr<Elemento> elemAux;
+    std::shared_ptr<Elemento2> elemAux = _ultimo;
     Fila2 filaAux;
 
     if (_ultimo != nullptr) {
@@ -85,10 +103,10 @@ Fila2 Fila2::Split(const Persona& dato) {
             } while (not (elemAux->next->dato == dato));
         }
 
+        filaAux._ultimo = elemAux->next;
         elemAux->next = nullptr;
-        filaAux._ultimo = std::make_shared<Elemento>(dato);
     } else {
-        throw std::string{"Fila2 vacia"};
+        throw std::string{"Fila vacia"};
     }
 
     return filaAux;

@@ -12,13 +12,14 @@ class Fila2 {
         Persona getFront() const;
         Persona getBack() const;
         void push(const Persona& dato);
-        bool PersonPresent(const Persona& dato);
+        // bool PersonPresent(const Persona& dato);
+        int PersonPresent(const Persona& dato);
         Fila2 Split(const Persona& dato);
 
     private:
-        std::shared_ptr<Elemento> _ultimo = nullptr;
+        std::shared_ptr<Elemento2> _ultimo = nullptr;
         friend std::ostream& operator<<(std::ostream& os, const Fila2& f){
-            std::shared_ptr<Elemento> aux = f._ultimo;
+            std::shared_ptr<Elemento2> aux = f._ultimo;
             if (aux != nullptr) {
                 os << aux->dato.nombre << "_";
                 while (aux->next != nullptr) {

@@ -9,7 +9,7 @@ struct Persona{
     int edad{0};
 
      bool operator == (const Persona &op2) const{
-             if(op2.nombre==this->nombre and op2.edad==this->edad) {
+             if(op2.nombre == this->nombre and op2.edad == this->edad) {
                  return true;
              }
              return false;
@@ -17,16 +17,16 @@ struct Persona{
 };
 
 struct Elemento{
-    Elemento (const Persona &p) {dato=p;}
+    explicit Elemento (const Persona &p) {dato = p;}
     Persona dato;
     std::shared_ptr<Elemento> next{nullptr};
 };
 
 struct Elemento2{
-    Elemento2 (const Persona &p) {dato = p;}
+    explicit Elemento2 (const Persona &p) {dato = p;}
     Persona dato;
-    std::shared_ptr<Elemento> next{nullptr};
-    std::shared_ptr<Elemento> prev{nullptr};
+    std::shared_ptr<Elemento2> next{nullptr};
+    std::shared_ptr<Elemento2> prev{nullptr};
 };
 
 #endif // TIPOS_H_

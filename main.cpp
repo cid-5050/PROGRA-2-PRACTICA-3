@@ -39,9 +39,13 @@ int main() {
               << panaderia.size() << " " <<  panaderia.getFront().nombre
               << " " << panaderia.getBack().nombre << std::endl;
 
+    std::cout << std::endl;
+
     std::cout << "Llega Pepe a la fila..." << std::endl;
 
     panaderia.push(p1);
+
+    std::cout << std::endl;
 
     std::cout << "Status fila pan..." << panaderia.empty() << " "
               << panaderia.size() << " " <<  panaderia.getFront().nombre
@@ -49,37 +53,54 @@ int main() {
 
     panaderia.push(p2);
 
+    std::cout << std::endl;
+
     std::cout << "Llega Toni a la fila..." << std::endl;
+
+    std::cout << std::endl;
+
     std::cout << "Status fila pan..." << panaderia.empty() << " "
               <<  panaderia.size() << " " <<  panaderia.getFront().nombre
               << " " << panaderia.getBack().nombre << std::endl;
 
     panaderia.push(p3);
 
+    std::cout << std::endl;
+
     std::cout << "Llega Ana a la fila..." << std::endl;
+
+    std::cout << std::endl;
 
     std::cout << "Status fila pan..." << panaderia.empty() << " "
               <<  panaderia.size() << " " <<  panaderia.getFront().nombre
               << " " << panaderia.getBack().nombre << std::endl;
 
+    std::cout << std::endl;
+
     std::cout << "Esta Federico 18?... " << panaderia.PersonPresent(p4) << std::endl;
     std::cout << "Esta Ana Martinez 27?... " << panaderia.PersonPresent(p3) << std::endl;
+    std::cout << "Toni Martin 21?... " << panaderia.PersonPresent(p2) << std::endl;
+    std::cout << "Esta Pepe Perez 30?... " << panaderia.PersonPresent(p1) << std::endl;
+    std::cout << "Esta Julia Perez 31?... " << panaderia.PersonPresent(p) << std::endl;
+
+    std::cout << std::endl;
 
     std::cout << "Gente en la fila del pan... " << panaderia;
 
     std::cout << std::endl;
     std::cout << std::endl;
 
-    std::cout << "Se corta la fila en p2..." << std::endl;
+    std::cout << "Se corta la fila en p1..." << std::endl;
 
     Fila fila2;
     try {
-         fila2 = panaderia.Split(p2);
+         fila2 = panaderia.Split(p1);
     } catch (const std::string &e) {
         std::cout << "Excepcion capturada. " << e << std::endl;
     }
 
     std::cout << "Gente en la fila original... " << panaderia;
+    std::cout << std::endl;
     std::cout << "Gente en la nueva fila... " << fila2;
 
     std::cout << std::endl;

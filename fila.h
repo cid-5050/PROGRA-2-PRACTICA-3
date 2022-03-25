@@ -12,7 +12,8 @@ class Fila {
         Persona getFront() const;
         Persona getBack() const;
         void push(const Persona& dato);
-        bool PersonPresent(const Persona& dato);
+        // bool PersonPresent(const Persona& dato);
+        int PersonPresent(const Persona& dato);
         Fila Split(const Persona& dato);
 
     private:
